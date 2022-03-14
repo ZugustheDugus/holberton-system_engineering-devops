@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#  Install nginx on your web-01 server
+addlines="frontend http_web\n\tbind 0.0.0.0:80\n\tmode http\nbackend custom_backend\n\tbalance roundrobin\n\toption forwardfor\n\tserver 3577-web-01 18.209.8.124:80 check\n\tserver 3577-web-02 54.234.47.110:80 check"
+sudo apt-get -y update
+sudo apt-get -y upgrade
+sudo apt-get -y install haproxy
+echo ENABLED=1 | sudo tee -a /etc/default/haproxy
+echo -e $addlines | sudo tee -a /etc/haproxy/haproxy.cfg
+sudo service haproxy start
