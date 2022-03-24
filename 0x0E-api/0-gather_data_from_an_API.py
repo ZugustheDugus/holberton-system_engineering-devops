@@ -2,34 +2,35 @@
 """
 Gather Data from an API
 """
-import json
-from sys import argv
-from urllib import request
+
+import sys
+import requests
 
 if __name__ == "__main__":
 
-    rqst = request.urlopen('https://jsonplaceholder.typicode.com/users/{}'
-                            .format(argv[1]))
+    try:
+        usr_id = sys.argv[1]
+        id = int(usr_id)
 
-    usr = json.loads(rqst.read())
+    except:
+        print("ID not INT")
 
-    rqst = request.urlopen('https://jsonplaceholder.typicode.com/todos')
-    todo_all = json.loads(rqst.read())
+    usr = requests.get("https://jsonplaceholder.typicode.com/users/{}"
+                    .format(id))
+    name = usr.json()["name"]
 
-    rqst.close()
+    todos = requests.get("https://jsonplaceholder.typicode.com/todos")
 
-    todo = []
-    success = 0
+    todo_all = 0
+    todo_cmplt = 0
 
-    for item in all:
-        if str(item.get("user.id")) == argv[1]:
-            todo.append(item)
-            if item.get("completed") is True:
-                success += 1
+    for j in todos.json():
+        if j['usr_id'] == id:
+            todo_all += 1
+        if j['usr_id'] == id:
+            todo_cmplt += 1
 
-    print("Employee {} is done with tasks({}/{}):".
-            format(usr.get("name"), success, len(todo)))
-
-    for item in todo:
-        if item.get("completed") is True:
-            print("\t {}".format(item.get("title")))
+print("Employee {} is done with tasks({}/{}):".format(name, todo_cmplt, todo_all))
+for j in todos.json():
+    if j["usr_id"]:
+        print("\t {}".format(j['title']))
