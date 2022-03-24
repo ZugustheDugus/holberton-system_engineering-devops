@@ -8,7 +8,8 @@ from urllib import request
 
 if __name__ == "__main__":
 
-    rqst = request.urlopen('https://jsonplaceholder.typicode.com/users/{}'.format(argv[1]))
+    rqst = request.urlopen('https://jsonplaceholder.typicode.com/users/{}'
+                           .format(argv[1]))
 
     usr = json.loads(rqst.read())
 
@@ -26,7 +27,8 @@ if __name__ == "__main__":
             if item.get("completed") is True:
                 success += 1
 
-    print("Employee {} is done with tasks({}/{}):".format(usr.get("name"), success, len(todo)))
+    print("Employee {} is done with tasks({}/{}):"
+          .format(usr.get("name"), success, len(todo)))
 
     for item in todo:
         if item.get("completed") is True:
