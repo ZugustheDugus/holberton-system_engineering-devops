@@ -2,34 +2,24 @@
 """
 Gather Data from an API
 """
-import json
+import requests
 from sys import argv
-from urllib import request
 
 if __name__ == "__main__":
 
-    rqst = request.urlopen('https://jsonplaceholder.typicode.com/users/{}'
-                           .format(argv[1]))
+    id = argv[1]
+    usr = requests.get("https://jsonplaceholder.typicode.com/users/{}"
+    .format(id)).json()
 
-    usr = json.loads(rqst.read())
+    todos = requests.get("https://jsonplaceholder.typicode.com/todos?userId={}"
+    .format(id)).json()
 
-    rqst = request.urlopen('https://jsonplaceholder.typicode.com/todos')
-    todo_all = json.loads(rqst.read())
+    complete = []
 
-    rqst.close()
-
-    todo = []
-    success = 0
-
-    for item in all:
-        if str(item.get("user.id")) == argv[1]:
-            todo.append(item)
-            if item.get("completed") is True:
-                success += 1
-
-    print("Employee {} is done with tasks({}/{}):"
-          .format(usr.get("name"), success, len(todo)))
-
-    for item in todo:
-        if item.get("completed") is True:
-            print("\t {}".format(item.get("title")))
+    for task in todos:
+        if task.get("completed") is True:
+            complete.append(task.get("title"))
+        print("Employee {} is done with tasks({}/{}):"
+            .format(usr.get('name'), len(complete), len(todos)))
+        for task in complete:
+            print("\t {}".format(task))
