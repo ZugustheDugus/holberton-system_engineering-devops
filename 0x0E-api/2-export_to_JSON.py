@@ -10,11 +10,11 @@ def Jason():
     import requests
     from sys import argv
     id = argv[1]
-    usr = requests.get("https://jsonplaceholder.typicode.com/users/{}".
-                        format(id)).json()
+    usr = requests.get("https://jsonplaceholder.typicode.com/users/{}"
+                       .format(id)).json()
 
-    todos = requests.get("https://jsonplaceholder.typicode.com/todos?userId={}".
-                        format(id)).json()
+    todos = requests.get("https://jsonplaceholder.typicode.com/todos?userId={}"
+                         .format(id)).json()
 
     complete = []
 
