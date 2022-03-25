@@ -8,7 +8,7 @@ import requests
 import csv
 from sys import argv
 
-def get_csv():
+def CSV():
     id = argv[1]
     usr = requests.get("https://jsonplaceholder.typicode.com/users/{}".
                         format(id)).json()
@@ -34,4 +34,4 @@ def get_csv():
 
 
 if __name__ == '__main__':
-    get_csv()
+    CSV()
