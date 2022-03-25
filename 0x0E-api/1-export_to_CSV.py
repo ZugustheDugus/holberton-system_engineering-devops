@@ -8,13 +8,14 @@ import requests
 import csv
 from sys import argv
 
+
 def CSV():
     id = argv[1]
-    usr = requests.get("https://jsonplaceholder.typicode.com/users/{}".
-                        format(id)).json()
+    usr = requests.get("https://jsonplaceholder.typicode.com/users/{}"
+                       .format(id)).json()
 
-    todos = requests.get("https://jsonplaceholder.typicode.com/todos?userId={}".
-                        format(id)).json()
+    todos = requests.get("https://jsonplaceholder.typicode.com/todos?userId={}"
+                         .format(id)).json()
 
     complete = []
 
