@@ -3,16 +3,18 @@
 Export data in the JSON format, but it's a dict list of dicts
 based on task 0
 """
+
+
 def Jason():
     import csv
     import json
     import requests
     from sys import argv
     id = argv[1]
-    usr = requests.get("https://jsonplaceholder.typicode.com/users/{}".
-                        format(id)).json()
-    todos = requests.get("https://jsonplaceholder.typicode.com/todos?userId={}".
-                        format(id)).json()
+    usr = requests.get("https://jsonplaceholder.typicode.com/users/{}"
+                       .format(id)).json()
+    todos = requests.get("https://jsonplaceholder.typicode.com/todos?userId={}"
+                         .format(id)).json()
     usr = requests.get("https://jsonplaceholder.typicode.com/users").json()
     todos = requests.get("https://jsonplaceholder.typicode.com/todos").json()
 
