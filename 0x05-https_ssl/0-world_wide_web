@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Task 0 World Wide Web
+if [ $2 ]
+then
+    sub=$2
+    subd="$2.$1"
+    dig $subd | awk -v s="$sub" '/ANSWER SECTION/ {getline; print "The subdomain", s, "is a", $4, "record and points to", $5}'
+else
+    dig www.$1 | awk '/ANSWER SECTION/ {getline; print "The subdomain www is a", $4, "record and points to", $5}'
+    dig lb-01.$1 | awk '/ANSWER SECTION/ {getline; print "The subdomain lb-01 is a", $4, "record and points to", $5}'
+    dig web-01.$1 | awk '/ANSWER SECTION/ {getline; print "The subdomain web-01 is a", $4, "record and points to", $5}'
+    dig web-02.$1 | awk '/ANSWER SECTION/ {getline; print "The subdomain web-02 is a", $4, "record and points to", $5}'
+fi
